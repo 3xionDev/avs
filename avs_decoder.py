@@ -1,6 +1,7 @@
 import time
 import threading
 from queue import Queue
+from typing import List, Optional
 from avs_utils import rgb_ansi
 
 
@@ -8,7 +9,9 @@ class AVSDecoder:
     # -------------------------------
     # Queue frames so we don't have to preload all of them before playing
     # -------------------------------
-    def _queue_future_frames(self, data, queue, flag):
+    def _queue_future_frames(
+        self, data: bytes, queue: Queue[Optional[List[str]]], flag: threading.Event
+    ) -> None:
         while not flag.is_set():
             version = data[3]
             width = int.from_bytes(data[4:6], "big")
@@ -51,7 +54,7 @@ class AVSDecoder:
     # -------------------------------
     # Play AVS file in terminal
     # -------------------------------
-    def play_rgb_avs(self, file_path):
+    def play_rgb_avs(self, file_path: str) -> None:
         with open(file_path, "rb") as f:
             data = f.read()
 

@@ -1,16 +1,21 @@
 from itertools import groupby
+from typing import Union
 
 # -------------------------------
 # AVS STANDARD CHARSET - DO NOT EDIT
 # -------------------------------
-CS5 = " `'.,:;\"^-_~+<>i!lI?/\\|()[]{}1tfjrxnuvczXYJLTFSykaeohpqdb#*=%SOGUVCAEPRKHMNDBQ0WZ@&$"
+CS5: str = (
+    " `'.,:;\"^-_~+<>i!lI?/\\|()[]{}1tfjrxnuvczXYJLTFSykaeohpqdb#*=%SOGUVCAEPRKHMNDBQ0WZ@&$"
+)
 
 
-def clamp(n, min_val, max_val):
+def clamp(
+    n: Union[int, float], min_val: Union[int, float], max_val: Union[int, float]
+) -> Union[int, float]:
     return max(min_val, min(n, max_val))
 
 
-def rgb_ansi(r, g, b):
+def rgb_ansi(r: int, g: int, b: int) -> str:
     return f"\033[38;2;{r};{g};{b}m"
 
 

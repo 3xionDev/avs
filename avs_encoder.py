@@ -1,6 +1,7 @@
 import time
 import numpy as np
 import os
+from typing import Tuple, Optional
 from PIL import Image
 import cv2
 import ffmpeg
@@ -9,7 +10,14 @@ from avs_utils import CS5, clamp, rgb_ansi
 
 
 class AVSEncoder:
-    def __init__(self, width=120, frame_rate=1, version=3, charset=CS5, brightness=1):
+    def __init__(
+        self,
+        width: int = 120,
+        frame_rate: int = 1,
+        version: int = 3,
+        charset: str = CS5,
+        brightness: int = 1,
+    ) -> None:
         self.width = width
         self.frame_rate = frame_rate
         self.version = version
@@ -26,7 +34,9 @@ class AVSEncoder:
             return int(video_stream["nb_frames"])
         return 0
 
-    def _frame_to_ascii_fast(self, frame):
+    def _frame_to_ascii_fast(
+        self, frame: Optional[np.ndarray]
+    ) -> Tuple[bytearray, int, int]:
         if frame is None:
             return bytearray(), 0, 0
 
@@ -57,7 +67,7 @@ class AVSEncoder:
 
         return chars + colors, self.width, new_height
 
-    def encode(self, file_path, outfile="output.avs"):
+    def encode(self, file_path: str, outfile: str = "output.avs") -> None:
         expanded_path = os.path.expanduser(file_path)
         frames_count = self._get_frame_count_metadata(expanded_path)
         cap = cv2.VideoCapture(expanded_path)
