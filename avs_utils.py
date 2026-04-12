@@ -4,9 +4,7 @@ from typing import Union
 # -------------------------------
 # AVS STANDARD CHARSET - DO NOT EDIT
 # -------------------------------
-CS5: str = (
-    " `'.,:;\"^-_~+<>i!lI?/\\|()[]{}1tfjrxnuvczXYJLTFSykaeohpqdb#*=%SOGUVCAEPRKHMNDBQ0WZ@&$"
-)
+CS5: str = " `'.,:;\"^-_~+<>i!lI?/\\|()[]{}1tfjrxnuvczXYJLTFSykaeohpqdb#*=%SOGUVCAEPRKHMNDBQ0WZ@&$"
 
 
 def clamp(
