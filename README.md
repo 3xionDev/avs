@@ -1,3 +1,5 @@
+<img width="1890" height="1181" alt="avs_solarized" src="https://github.com/user-attachments/assets/fed2d48e-a62e-435f-ada5-2704d90152e6" />
+
 AVS (ASCII Video Stream) is a suite of tools for playing videos in your terminal
 ***
 Status:
